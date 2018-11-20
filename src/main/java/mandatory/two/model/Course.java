@@ -13,7 +13,6 @@ public class Course {
     private Long id;
     private String nameInDanish;
     private String nameInEnglish;
-    //Studyprogramme
     private Boolean isMandatory;
     private Integer ECTS;
     private Integer semester;
@@ -27,6 +26,8 @@ public class Course {
     private String content;
     private String learningActivities;
     private String examForm;
+    @OneToOne
+    private StudyProgramme studyProgramme;
     @ManyToMany
     private List<Teacher> teachers;
 

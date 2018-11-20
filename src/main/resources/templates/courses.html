@@ -1,0 +1,89 @@
+<!--
+* Created by Matthias Skou 20/11/2018
+-->
+
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Course</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" id="nav_top">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/thisIsTheURLCar">Cars <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+      Welcome <span id="name_span"></span>
+    </span>
+    </div>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name(DA)</th>
+        <th scope="col">Name(EN)</th>
+        <th scope="col">Mandatory</th>
+        <th scope="col">ECTS</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Class code</th>
+        <th scope="col">Language</th>
+        <th scope="col">Min # of students</th>
+        <th scope="col">Max # of students</th>
+        <th scope="col">Expected # of students</th>
+        <th scope="col">Prerequisites</th>
+        <th scope="col">Learning outcome</th>
+        <th scope="col">Content</th>
+        <th scope="col">Learning activities</th>
+        <th scope="col">Exam form</th>
+        <th scope="col">Study programme</th>
+        <th scope="col">Teachers</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="car:${course}">
+        <td th:text="${course.id}">{{id}}</td>
+        <td th:text="${course.nameInDanish}">{{nameInDanish}}</td>
+        <td th:text="${course.nameInEnglish}">{{nameInEnglish}}</td>
+        <td th:text="${course.mandatory}">{{mandatory}}</td>
+        <td th:text="${course.ECTS}">{{ECTS}}</td>
+        <td th:text="${course.semester}">{{Semester}}</td>
+        <td th:text="${course.classCode}">{{classCode}}</td>
+        <td th:text="${course.language}">{{language}}</td>
+        <td th:text="${course.minimumNumberOfStudents}">{{min students}}</td>
+        <td th:text="${course.maximumNumberOfStudents}">{{max students}}</td>
+        <td th:text="${course.expectedNumberOfStudents}">{{exp students}}</td>
+        <td th:text="${course.prerequisites}">{{prerequisites}}</td>
+        <td th:text="${course.learningOutcome}">{{learningOutcome}}</td>
+        <td th:text="${course.content}">{{content}}</td>
+        <td th:text="${course.learningActivities}">{{learningActivities}}</td>
+        <td th:text="${course.examForm}">{{examForm}}</td>
+        <td th:text="${course.studyProgramme}">{{studyProgramme}}</td>
+        <td th:text="${course.teachers}">{{teachers}}</td>
+    </tr>
+
+    </tbody>
+</table>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>

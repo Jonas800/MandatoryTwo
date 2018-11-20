@@ -1,4 +1,9 @@
 package mandatory.two.repository;
 
-public class UserRepository {
+import mandatory.two.model.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
+
+    User findByEmail(String email);
 }

@@ -32,9 +32,7 @@ public class StudentController {
 
         try {
             student.setPassword(PasswordHasher.generateStrongPasswordHash(student.getPassword()));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
         }
 

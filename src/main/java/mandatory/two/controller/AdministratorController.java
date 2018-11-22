@@ -1,7 +1,6 @@
 package mandatory.two.controller;
 
 import mandatory.two.model.Administrator;
-import mandatory.two.model.Student;
 import mandatory.two.passwordHandlers.PasswordHasher;
 import mandatory.two.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +32,7 @@ public class AdministratorController {
 
         try {
             administrator.setPassword(PasswordHasher.generateStrongPasswordHash(administrator.getPassword()));
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             e.printStackTrace();
         }
 

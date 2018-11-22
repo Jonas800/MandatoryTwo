@@ -29,8 +29,8 @@ public class LoginController {
     public String login(@RequestParam(defaultValue = "") String email,
                         @RequestParam(defaultValue = "") String password){
 
-        User user = userRepository.findByEmail(email);
-        System.out.println(user.getEmail());
+        // User user = userRepository.findByEmail(email);
+        // System.out.println(user.getEmail());
 
         return "redirect:/forside";
     }

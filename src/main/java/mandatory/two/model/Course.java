@@ -28,8 +28,8 @@ public class Course {
     private String examForm;
     @OneToOne
     private StudyProgramme studyProgramme;
-    @ManyToMany
-    private List<Teacher> teachers;
+    //@ManyToMany
+    //private List<Teacher> teachers;
 
     public Course(){}
 
@@ -169,11 +169,11 @@ public class Course {
         this.studyProgramme = studyProgramme;
     }
 
-    public List<Teacher> getTeachers() {
-        return teachers;
-    }
+    //public List<Teacher> getTeachers() {
+    //    return teachers;
+   //}
 
-    public void setTeachers(List<Teacher> teachers) {
-        this.teachers = teachers;
-    }
+   // public void setTeachers(List<Teacher> teachers) {
+    //    this.teachers = teachers;
+   // }
 }

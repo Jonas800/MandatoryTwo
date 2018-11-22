@@ -1,5 +1,7 @@
 package mandatory.two.model;
 
+import org.springframework.cglib.core.GeneratorStrategy;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,9 @@ public class Course {
     private String examForm;
     @OneToOne
     private StudyProgramme studyProgramme;
-    //@ManyToMany
-    //private List<Teacher> teachers;
+    @ManyToMany
+    @JoinColumn(name="id")
+    private List<Teacher> teachers;
 
     public Course(){}
 

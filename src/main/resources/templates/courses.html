@@ -65,6 +65,9 @@
             </tr>
             </thead>
             <tbody>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Show more</button>
+            </td>
             <tr th:each="course:${courses}">
                 <td th:text="${course.id}">{{id}}</td>
                 <td th:text="${course.nameInDanish}">{{nameInDanish}}</td>
@@ -86,17 +89,16 @@
                 <td th:text="${course.studyProgramme}">{{studyProgramme}}</td>
                 <td th:text="${course.teachers}">{{teachers}}</td>
                 -->
+
                 <td>
                     <a th:href="'/course/edit/'+${course.id}" class="btn btn-outline-warning"> Edit </a>
-                    <button type="button" class="car-delete btn btn-outline-danger" th:attr="data-id=${course.id}">Delete
-                    </button>
+                    <button type="button" class="car-delete btn btn-outline-danger">Delete</button>
                 </td>
             </tr>
             </tbody>
-        </table>
-            <!-- Large modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Show more</button>
 
+            <!-- Large modal -->
+        </table>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -110,86 +112,86 @@
                             <thead>
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">ID</th>
+                                <td>ID</td>
                             </tr>
                             <tr>
                                 <th scope="col">Name(DA)</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Name(EN)</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Mandatory</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">ECTS</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Semester</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Class code</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Min # of students</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Max # of students</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Expected # of students</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Prerequisites</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Learning outcome</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Content</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Learning activities</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Exam form</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Study programme</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             <tr>
                                 <th scope="col">Teachers</th>
-                                <th scope="col">ID</th>
+                                <td scope="col">ID</td>
 
                             </tr>
                             </thead>
@@ -200,6 +202,17 @@
     </div>
 </div>
 </div>
+<script>
+    $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+})
+</script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

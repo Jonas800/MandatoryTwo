@@ -27,11 +27,13 @@ public class CourseController {
 
     @GetMapping("/course")
     public String courses(Model model){
-        ArrayList<Course> courseList = (ArrayList<Course>) courseRepository.findAll();
+        List<Course> courseList = courseRepository.findAll();
         System.out.println(courseList);
         //ArrayList<StudyProgramme> studyList = (ArrayList<StudyProgramme>) studyRepo.findAll();
         //System.out.println(studyList);
         // System.out.println(courseList.get(0).getLanguage());
+        //Course c = courseRepository.findByEcts(2);
+        //System.out.println(c);
         model.addAttribute("courses", courseList);
         return "courses";
     }

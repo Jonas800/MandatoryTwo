@@ -14,7 +14,7 @@ public class Course {
     private String nameInDanish;
     private String nameInEnglish;
     private Boolean isMandatory;
-    private Integer ECTS;
+    private Integer ects;
     private Integer semester;
     private String classCode;
     private String language;
@@ -65,12 +65,12 @@ public class Course {
         isMandatory = mandatory;
     }
 
-    public Integer getECTS() {
-        return ECTS;
+    public Integer getEcts() {
+        return ects;
     }
 
-    public void setECTS(Integer ECTS) {
-        this.ECTS = ECTS;
+    public void setEcts(Integer ects) {
+        this.ects = ects;
     }
 
     public Integer getSemester() {

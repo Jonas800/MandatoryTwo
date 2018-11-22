@@ -1,4 +1,4 @@
 package mandatory.two.repository;
 
-public class UserRepository {
+public interface UserRepository {
 }

@@ -21,18 +21,18 @@ import java.util.List;
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
+    // JPA Test
     @Autowired
     private StudyProgrammeRepository studyRepo;
 
     @GetMapping("/course")
     public String courses(Model model){
-        //ArrayList<Course> courseList = (ArrayList<Course>) courseRepository.findAll();
-        //System.out.println(courseList);
-        ArrayList<StudyProgramme> studyList = (ArrayList<StudyProgramme>) studyRepo.findAll();
-        System.out.println(studyList);
+        ArrayList<Course> courseList = (ArrayList<Course>) courseRepository.findAll();
+        System.out.println(courseList);
+        //ArrayList<StudyProgramme> studyList = (ArrayList<StudyProgramme>) studyRepo.findAll();
+        //System.out.println(studyList);
         // System.out.println(courseList.get(0).getLanguage());
-
-        model.addAttribute("courses", studyRepo);
+        model.addAttribute("courses", courseList);
         return "courses";
     }
 

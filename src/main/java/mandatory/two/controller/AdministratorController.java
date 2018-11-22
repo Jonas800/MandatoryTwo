@@ -21,15 +21,15 @@ public class AdministratorController {
     private UserRepository userRepository;
 
     @GetMapping("/administrator/create")
-    public String createStudentView(Model model){
+    public String createAdministratorView(Model model){
 
         model.addAttribute("user", new Administrator());
 
-        return "createStudent";
+        return "createAdministrator";
     }
 
     @PostMapping("/administrator/create")
-    public String createStudent(@ModelAttribute Administrator administrator){
+    public String createAdministrator(@ModelAttribute Administrator administrator){
 
         try {
             administrator.setPassword(PasswordHasher.generateStrongPasswordHash(administrator.getPassword()));

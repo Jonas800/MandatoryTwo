@@ -6,7 +6,7 @@
  ******/
 
 
-package mandatory.two.passwordHandlers;
+package mandatory.two.helper;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

@@ -1,7 +1,7 @@
 package mandatory.two.controller;
 
 import mandatory.two.model.User;
-import mandatory.two.passwordHandlers.PasswordMatcher;
+import mandatory.two.helper.PasswordMatcher;
 import mandatory.two.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

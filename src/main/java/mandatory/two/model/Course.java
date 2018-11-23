@@ -33,6 +33,8 @@ public class Course {
     @ManyToMany
     @JoinColumn(name="id")
     private List<Teacher> teachers;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Student> students;
 
     public Course(){}
 
@@ -172,11 +174,19 @@ public class Course {
         this.studyProgramme = studyProgramme;
     }
 
-    //public List<Teacher> getTeachers() {
-    //    return teachers;
-   //}
+    public List<Teacher> getTeachers() {
+        return teachers;
+   }
 
-   // public void setTeachers(List<Teacher> teachers) {
-    //    this.teachers = teachers;
-   // }
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 }

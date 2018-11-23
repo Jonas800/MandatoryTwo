@@ -10,14 +10,24 @@ import javax.persistence.criteria.Root;
 
 public class SearchSpecification {
 
-    public static Specification<Course> doesNameInDanishContain(String nameInDanish){
+    public static Specification<Course> doesFieldContain(String criteria, String targetField) {
+        return (Specification<Course>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get(targetField), "%" + criteria + "%");
+    }
+    /*public static Specification<Course> doesNameInDanishContain(String nameInDanish) {
         return new Specification<Course>() {
             @Override
             public Predicate toPredicate(Root<Course> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("nameInDanish"), nameInDanish);
+                return criteriaBuilder.like(root.get("nameInDanish"), "%" + nameInDanish + "%");
             }
         };
-    }
+    }*/
 
-    //public static Specification<Course> doesNameIn
+    /*public static Specification<Course> doesNameInEnglishContain(String nameInEnglish) {
+        return new Specification<Course>() {
+            @Override
+            public Predicate toPredicate(Root<Course> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                return criteriaBuilder.like(root.get("nameInEnglish"), "%" + nameInEnglish + "%");
+            }
+        };
+    }*/
 }

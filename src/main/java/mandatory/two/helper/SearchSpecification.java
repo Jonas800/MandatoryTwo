@@ -13,6 +13,11 @@ public class SearchSpecification {
     public static Specification<Course> doesFieldContain(String criteria, String targetField) {
         return (Specification<Course>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get(targetField), "%" + criteria + "%");
     }
+    public static Specification<Course> doesForeignKeyContain(String criteria, String targetField, String joinTable) {
+        return (Specification<Course>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.join(joinTable).get(targetField), "%" + criteria + "%");
+    }
+
+
     /*public static Specification<Course> doesNameInDanishContain(String nameInDanish) {
         return new Specification<Course>() {
             @Override

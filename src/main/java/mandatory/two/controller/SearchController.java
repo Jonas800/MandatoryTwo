@@ -54,7 +54,10 @@ public class SearchController {
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
                 .where(SearchSpecification.doesFieldContain(course.getNameInDanish(), "nameInDanish"))
                 .and(SearchSpecification.doesFieldContain(course.getNameInEnglish(), "nameInEnglish"))
+                .and(SearchSpecification.doesFieldContain(course.getExamForm(), "examForm"))
+                .and(SearchSpecification.doesFieldContain(course.getLanguage(), "language"))
                 .and(SearchSpecification.doesFieldContain(course.getClassCode(), "classCode"))
+                .and(SearchSpecification.doesForeignKeyContain(course.getStudyProgramme().getName(), "name", "studyProgramme"))
         );
 
         System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());

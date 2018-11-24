@@ -1,6 +1,8 @@
 package mandatory.two.repository;
 
 import mandatory.two.model.Course;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +13,7 @@ import java.util.List;
  */
 
 @Repository
-public interface CourseRepository extends CrudRepository<Course, Long> {
+public interface CourseRepository extends CrudRepository<Course, Long>, JpaSpecificationExecutor {
     List<Course> findAll();
-    //TEST
-    //Course findByEcts(Integer ects);
+    List<Course> findAll(Specification specification);
 }

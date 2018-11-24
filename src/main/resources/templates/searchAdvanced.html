@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Search for Courses</title>
+</head>
+<body>
+<form method="post" action="/search/advanced">
+    <label for="">Name in Danish</label>
+    <input type="text" th:field="${course.nameInDanish}">
+    <label for="">Name in English</label>
+    <input type="text" th:field="${course.nameInEnglish}">
+    <label for="">Class Code</label>
+    <input type="text" th:field="${course.classCode}">
+    <label for="">Exam Form</label>
+    <input type="text" th:field="${course.examForm}">
+    <label for="">Name in Danish</label>
+    <input type="text" th:field="${course.content}">
+    <label for="">Language</label>
+    <input type="text" th:field="${course.language}">
+    <label for="">Study Programme</label>
+    <input type="text" th:field="${course.studyProgramme.name}">
+
+    <button type="submit">Search</button>
+</form>
+</body>
+</html>

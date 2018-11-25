@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 public class SearchController {
@@ -49,7 +49,7 @@ public class SearchController {
         return "searchAdvanced";
     }
     @PostMapping("search/advanced")
-    public String searchAdvanced(@ModelAttribute Course course){
+    public ModelAndView searchAdvanced(@ModelAttribute Course course){
 
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
                 .where(SearchSpecification.doesFieldContain(course.getNameInDanish(), "nameInDanish"))
@@ -62,6 +62,19 @@ public class SearchController {
 
         System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
 
-        return "searchResult";
+        ModelAndView mav = new ModelAndView("searchResult");
+        mav.getModel().put("courses", courses);
+
+        return mav;
+    }
+
+    @GetMapping("/search/advanced/{id}")
+    public String showMore(@PathVariable Long id, ModelMap model){
+
+        Optional<Course> optCourse = courseRepository.findById(id);
+        Course course = optCourse.get();
+        model.addAttribute("course", course);
+
+        return "modalCourse :: modalContents";
     }
 }

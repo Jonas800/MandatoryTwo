@@ -1,0 +1,98 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true" th:each="course : ${courses}" th:id="'#modal'+${course.id}" th:fragment="modalContents">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Course information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Name(DA)</th>
+                    <td scope="col" th:text="${course.nameInDanish}"></td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Name(EN)</th>
+                    <td scope="col" th:text="${course.nameInEnglish}"></td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Mandatory</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">ECTS</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Semester</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Class code</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Min # of students</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Max # of students</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Expected # of students</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Prerequisites</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Learning outcome</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Content</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Learning activities</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Exam form</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Study programme</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                <tr>
+                    <th scope="col">Teachers</th>
+                    <td scope="col">ID</td>
+
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+</div>

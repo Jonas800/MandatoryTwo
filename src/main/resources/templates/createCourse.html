@@ -3,12 +3,14 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Create Student</title>
 </head>
 <body>
-
+<form method="post" action="/student/create">
+    <div th:replace="/userCreateForm"></div>
+</form>
 </body>
 </html>

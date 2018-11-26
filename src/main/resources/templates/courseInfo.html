@@ -1,0 +1,108 @@
+<!--
+* Created by Matthias Skou 26/11/2018
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Course information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="/header"></div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <td th:text="${course.id}">{{id}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Name(DA)</th>
+        <td th:text="${course.nameInDanish}">{{nameInDanish}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Name(EN)</th>
+        <td th:text="${course.nameInEnglish}">{{nameInEnglish}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Mandatory</th>
+        <td th:text="${course.mandatory}">{{mandatory}}</td>
+    </tr>
+    <tr>
+        <th scope="col">ECTS</th>
+        <td th:text="${course.ects}">{{ECTS}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Semester</th>
+        <td th:text="${course.semester}">{{Semester}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Class code</th>
+        <td th:text="${course.classCode}">{{classCode}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Language</th>
+        <td th:text="${course.language}">{{language}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Min # of students</th>
+        <td th:text="${course.minimumNumberOfStudents}">{{min students}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Max # of students</th>
+        <td th:text="${course.maximumNumberOfStudents}">{{max students}}</td>
+
+    </tr>
+    <tr>
+        <th scope="col">Expected # of students</th>
+        <td th:text="${course.expectedNumberOfStudents}">{{exp students}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Prerequisites</th>
+        <td th:text="${course.prerequisites}">{{prerequisites}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Learning outcome</th>
+        <td th:text="${course.learningOutcome}">{{learningOutcome}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Content</th>
+        <td th:text="${course.content}">{{content}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Learning activities</th>
+        <td th:text="${course.learningActivities}">{{learningActivities}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Exam form</th>
+        <td th:text="${course.examForm}">{{examForm}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Study programme</th>
+        <td th:text="${course.studyProgramme.getName()}">{{studyProgramme}}</td>
+    </tr>
+    <tr>
+        <th scope="col">Teachers</th>
+        <div>
+            <div th:each="teacher : ${course.teachers}" th:text="${teacher.firstName}">
+            </div>
+        </div>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

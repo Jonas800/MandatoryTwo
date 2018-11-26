@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Matthias Skou 20/11/2018
@@ -47,6 +48,14 @@ public class CourseController {
     public String createCourse(@RequestParam Course course){
         courseRepo.save(course);
         return "courses";
+    }
+
+    @GetMapping("/course/showmore")
+    public String showMore(@RequestParam Long id, Model model){
+        Optional<Course> optionalCourse = courseRepo.findById(id);
+        Course course = optionalCourse.get();
+        model.addAttribute("course", course);
+        return "courseInfo";
     }
 
 }

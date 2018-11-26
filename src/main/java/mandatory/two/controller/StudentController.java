@@ -2,6 +2,7 @@ package mandatory.two.controller;
 
 import mandatory.two.model.Student;
 import mandatory.two.helper.PasswordHasher;
+import mandatory.two.model.StudyProgramme;
 import mandatory.two.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 
 @Controller
 public class StudentController {
@@ -40,4 +42,5 @@ public class StudentController {
 
         return "redirect:/student/create";
     }
+
 }

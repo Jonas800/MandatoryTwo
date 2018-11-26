@@ -5,6 +5,7 @@
     <title>Advanced Search for Courses</title>
 </head>
 <body>
+<div th:replace="/header"></div>
 <form method="post" action="/search/advanced">
     <label for="">Name in Danish</label>
     <input type="text" th:field="${course.nameInDanish}">

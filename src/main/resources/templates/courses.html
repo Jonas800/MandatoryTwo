@@ -12,27 +12,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" id="nav_top">
-    <a class="navbar-brand" href="#">KEA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/course">Courses<span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <span class="navbar-text">
-      Welcome <span id="name_span"></span>
-    </span>
-    </div>
-</nav>
-
+<div th:replace="/header"></div>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
@@ -50,8 +30,8 @@
                 <td scope="col">Semester</td>
                 <td scope="col">Class code</td>
                 <td scope="col">Language</td>
-                <td></td>
-                <td></td>
+                <td scope="col">Teacher</td>
+                <td scope="col">Options</td>
                 <!--
                 <th scope="col">Min # of students</th>
                 <th scope="col">Max # of students</th>
@@ -68,11 +48,6 @@
             </tr>
             </thead>
             <tbody>
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                    Show more
-                </button>
-            </td>
             <tr th:each="course:${courses}">
                 <td th:text="${course.id}">{{id}}</td>
                 <td th:text="${course.nameInDanish}">{{nameInDanish}}</td>
@@ -101,6 +76,9 @@
 
 
                 <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                        Show more
+                    </button>
                     <a th:href="'/course/students/'+${course.id}" class="btn btn-outline-warning">Students</a>
                     <a th:href="'/course/edit/'+${course.id}" class="btn btn-outline-warning"> Edit </a>
                     <button type="button" class="car-delete btn btn-outline-danger">Delete</button>

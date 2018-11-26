@@ -29,7 +29,6 @@ public class CourseController {
     @GetMapping("/course")
     public String courses(Model model){
         List<Course> courseList = courseRepo.findAll();
-        System.out.println(courseList);
         //ArrayList<StudyProgramme> studyList = (ArrayList<StudyProgramme>) studyRepo.findAll();
         //System.out.println(studyList);
         // System.out.println(courseList.get(0).getLanguage());

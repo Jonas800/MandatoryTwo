@@ -5,6 +5,12 @@
     <title>Study Programmes</title>
 </head>
 <body>
+<div th:replace="/header"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Study Programme <br><a href="/studyprogramme/create" class="btn btn-outline-primary">Add new study program</a>
+        </h1>
+
     <ul th:each="studyprogramme : ${studyprogrammes}">
         <li th:text="${studyprogramme.name}"></li><a th:href="@{'/studyprogramme/delete/'+${studyprogramme.id}}">Remove</a>
     </ul>

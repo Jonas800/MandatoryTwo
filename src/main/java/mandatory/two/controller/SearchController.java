@@ -11,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -48,7 +50,7 @@ public class SearchController {
         return "searchAdvanced";
     }
     @PostMapping("search/advanced")
-    public ModelAndView searchAdvanced(@ModelAttribute Course course){
+    public ModelAndView searchAdvanced(@ModelAttribute Course course, HttpServletRequest request){
 
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
                 .where(SearchSpecification.doesFieldContain(course.getNameInDanish(), "nameInDanish"))
@@ -63,6 +65,9 @@ public class SearchController {
 
         ModelAndView mav = new ModelAndView("searchResult");
         mav.getModel().put("courses", courses);
+
+        HttpSession session = request.getSession();
+        session.setAttribute("lastView", mav);
 
         return mav;
     }

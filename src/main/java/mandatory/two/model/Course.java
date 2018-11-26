@@ -33,10 +33,15 @@ public class Course {
     @ManyToMany
     @JoinColumn(name="id")
     private List<Teacher> teachers;
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinColumn(name="id")
     private List<Student> students;
 
     public Course(){}
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
 
     public Long getId() {
         return id;

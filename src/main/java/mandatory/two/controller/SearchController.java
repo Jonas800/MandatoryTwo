@@ -11,7 +11,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -26,21 +25,21 @@ public class SearchController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam String search){
+    public ModelAndView search(@RequestParam String search){
         //ArrayList<Course> course = (ArrayList<Course>) courseRepository.findAll(SearchSpecification.doesNameInDanishContain("Kon"));
 
         //System.out.println("SE MIG : " + course.get(0).getNameInDanish());
-
-        ArrayList<Course> course2 = (ArrayList<Course>) courseRepository.findAll(Specification
-                .where(SearchSpecification.doesFieldContain("Kon", "nameInDanish"))
-                .and(SearchSpecification.doesFieldContain("", "nameInEnglish"))
+        //System.out.println(search);
+        ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
+                .where(SearchSpecification.doesFieldContain(search, "nameInDanish"))
+                .or(SearchSpecification.doesFieldContain(search, "nameInEnglish"))
         );
 
+        //System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
+        ModelAndView mav = new ModelAndView("searchResult");
+        mav.getModel().put("courses", courses);
 
-        System.out.println("SE MIG : " + course2.get(0).getNameInEnglish());
-
-
-        return "searchResult";
+        return mav;
     }
 
     @GetMapping("/search/advanced")
@@ -60,7 +59,7 @@ public class SearchController {
                 .and(SearchSpecification.doesForeignKeyContain(course.getStudyProgramme().getName(), "name", "studyProgramme"))
         );
 
-        System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
+        //System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
 
         ModelAndView mav = new ModelAndView("searchResult");
         mav.getModel().put("courses", courses);

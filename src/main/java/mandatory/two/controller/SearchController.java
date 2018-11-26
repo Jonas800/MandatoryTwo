@@ -32,12 +32,12 @@ public class SearchController {
         //System.out.println("SE MIG : " + course.get(0).getNameInDanish());
 
         ArrayList<Course> course2 = (ArrayList<Course>) courseRepository.findAll(Specification
-                .where(SearchSpecification.doesFieldContain("Kon", "nameInDanish"))
-                .and(SearchSpecification.doesFieldContain("", "nameInEnglish"))
+                .where(SearchSpecification.doesFieldContain(search, "nameInDanish"))
+                .and(SearchSpecification.doesFieldContain(search, "nameInEnglish"))
         );
 
 
-        System.out.println("SE MIG : " + course2.get(0).getNameInEnglish());
+        //System.out.println("SE MIG : " + course2.get(0).getNameInEnglish());
 
 
         return "searchResult";

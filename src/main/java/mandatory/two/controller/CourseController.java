@@ -1,6 +1,7 @@
 package mandatory.two.controller;
 
 import mandatory.two.model.Course;
+import mandatory.two.model.Student;
 import mandatory.two.model.StudyProgramme;
 import mandatory.two.repository.CourseRepository;
 import mandatory.two.repository.StudyProgrammeRepository;
@@ -8,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +53,24 @@ public class CourseController {
     public String createCourse(@RequestParam Course course){
         courseRepo.save(course);
         return "courses";
+    }
+
+    @GetMapping("/course/join/{id}")
+    public ModelAndView joinCourse(@PathVariable Long id, HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+        Student student = (Student) session.getAttribute("user");
+
+        Optional<Course> optionalCourse = courseRepo.findById(id);
+        Course course = optionalCourse.get();
+
+        course.addStudent(student);
+
+        courseRepo.save(course);
+
+        ModelAndView mav = (ModelAndView) session.getAttribute("lastView");
+
+        return mav;
     }
 
     @GetMapping("/course/showmore")

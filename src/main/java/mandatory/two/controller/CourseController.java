@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,6 +59,7 @@ public class CourseController {
     }
     @PostMapping("course/create")
     public String createCourse(@RequestParam Course course){
+        System.out.println(course.toString());
         courseRepo.save(course);
         return "courses";
     }

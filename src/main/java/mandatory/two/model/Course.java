@@ -194,4 +194,29 @@ public class Course {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", nameInDanish='" + nameInDanish + '\'' +
+                ", nameInEnglish='" + nameInEnglish + '\'' +
+                ", isMandatory=" + isMandatory +
+                ", ects=" + ects +
+                ", semester=" + semester +
+                ", classCode='" + classCode + '\'' +
+                ", language='" + language + '\'' +
+                ", minimumNumberOfStudents=" + minimumNumberOfStudents +
+                ", maximumNumberOfStudents=" + maximumNumberOfStudents +
+                ", expectedNumberOfStudents=" + expectedNumberOfStudents +
+                ", prerequisites='" + prerequisites + '\'' +
+                ", learningOutcome='" + learningOutcome + '\'' +
+                ", content='" + content + '\'' +
+                ", learningActivities='" + learningActivities + '\'' +
+                ", examForm='" + examForm + '\'' +
+                ", studyProgramme=" + studyProgramme +
+                ", teachers=" + teachers +
+                ", students=" + students +
+                '}';
+    }
 }

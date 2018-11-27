@@ -45,7 +45,13 @@ public class CourseController {
         //Course c = courseRepository.findByEcts(2);
         //System.out.println(c);
         model.addAttribute("courses", courseList);
-        return "courses";
+        return "redirect:/course";
+    }
+
+    @GetMapping("/course/delete/{id}")
+    public String deleteCourse(@PathVariable Long id){
+        courseRepo.deleteById(id);
+        return "/courses";
     }
 
     @GetMapping("/course/create")

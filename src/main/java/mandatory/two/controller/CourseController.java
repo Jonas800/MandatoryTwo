@@ -1,10 +1,7 @@
 package mandatory.two.controller;
 
 import mandatory.two.model.*;
-import mandatory.two.repository.CourseRepository;
-import mandatory.two.repository.StudyProgrammeRepository;
-import mandatory.two.repository.TeacherRepository;
-import mandatory.two.repository.UserRepository;
+import mandatory.two.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +32,8 @@ public class CourseController {
     private UserRepository userRepo;
     @Autowired
     private TeacherRepository teacherRepo;
+    @Autowired
+    private StudentRepository studentRepo;
 
     @GetMapping("/course")
     public String courses(Model model){
@@ -109,6 +108,15 @@ public class CourseController {
         Course course = optionalCourse.get();
         model.addAttribute("course", course);
         return "courseInfo";
+    }
+
+    @GetMapping("/course/students/{id}")
+    public String courseStudents(@PathVariable Long id, Model model){
+        Optional<Course> optionalCourse = courseRepo.findById(id);
+        Course course = optionalCourse.get();
+        model.addAttribute("student", studentRepo.findAll());
+        model.addAttribute("course", course);
+        return "courseStudents";
     }
 
 }

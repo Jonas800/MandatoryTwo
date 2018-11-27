@@ -1,0 +1,36 @@
+<!--
+* Created by Matthias Skou 27/11/2018
+-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Students assigned to course</title>
+</head>
+<body>
+<div th:replace="/header"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4" th:text="'Students assigned to course: ' + ${course.nameInEnglish}"><br>
+        </h1>
+
+        <table class="table table-striped">
+            <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+
+            </thead>
+            <tbody>
+            <tr th:each="student:${student}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.firstName} + ' ' + ${student.lastName}">{{Student first and last name}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+</div>
+</body>
+</html>

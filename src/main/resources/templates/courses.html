@@ -82,7 +82,7 @@
                     </button>
                     -->
                     <a th:href="'/course/showmore/?id='+${course.id}" class="btn btn-outline-info">Show more</a>
-                    <a th:href="'/course/students/'+${course.id}" class="btn btn-outline-warning">Students</a>
+                    <a th:href="@{'/course/students/'+${course.id}}" class="btn btn-outline-warning">Students</a>
                     <a th:href="'/course/edit/'+${course.id}" class="btn btn-outline-warning"> Edit </a>
                     <a th:href="@{'/course/delete/'+${course.id}}" class="btn btn-outline-danger">Delete</a>
                 </td>

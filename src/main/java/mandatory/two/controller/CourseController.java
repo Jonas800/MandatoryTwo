@@ -1,10 +1,10 @@
 package mandatory.two.controller;
 
-import mandatory.two.model.Course;
-import mandatory.two.model.Student;
-import mandatory.two.model.StudyProgramme;
+import mandatory.two.model.*;
 import mandatory.two.repository.CourseRepository;
 import mandatory.two.repository.StudyProgrammeRepository;
+import mandatory.two.repository.TeacherRepository;
+import mandatory.two.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,10 @@ public class CourseController {
     // JPA Test
     @Autowired
     private StudyProgrammeRepository studyRepo;
+    @Autowired
+    private UserRepository userRepo;
+    @Autowired
+    private TeacherRepository teacherRepo;
 
     @GetMapping("/course")
     public String courses(Model model){
@@ -46,6 +51,10 @@ public class CourseController {
 
     @GetMapping("/course/create")
     public String createCourse(Model model){
+        ArrayList<Teacher> teacherArrayList = teacherRepo.findAll();
+        ArrayList<StudyProgramme> studyProgrammeArrayList = (ArrayList) studyRepo.findAll();
+        model.addAttribute("teacher", teacherArrayList);
+        model.addAttribute("studyprogramme", studyProgrammeArrayList);
         model.addAttribute("course", new Course());
         return "createCourse";
     }

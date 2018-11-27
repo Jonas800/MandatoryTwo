@@ -1,11 +1,14 @@
 package mandatory.two.repository;
 
 import mandatory.two.model.Teacher;
-import mandatory.two.model.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-    User findByEmail(String email);
+/**
+ * Created by Matthias Skou 27/11/2018
+ */
+
+public interface TeacherRepository extends CrudRepository<Teacher, Long> {
+    ArrayList<Teacher> findAll();
 }

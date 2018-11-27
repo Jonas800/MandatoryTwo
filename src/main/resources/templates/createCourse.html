@@ -3,15 +3,169 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
     <title>Create Student</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="/header"></div>
-<form method="post" action="/student/create">
-    <div th:replace="/userCreateForm"></div>
-</form>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Create course <br>
+        </h1>
+        <!--
+        <tr th:each="course:${courses}">
+            <td th:text="${course.id}">{{id}}</td>
+            <td th:text="${course.nameInDanish}">{{nameInDanish}}</td>
+            <td th:text="${course.nameInEnglish}">{{nameInEnglish}}</td>
+            <td th:text="${course.mandatory}">{{mandatory}}</td>
+            <td th:text="${course.ects}">{{ECTS}}</td>
+            <td th:text="${course.semester}">{{Semester}}</td>
+            <td th:text="${course.classCode}">{{classCode}}</td>
+            <td th:text="${course.language}">{{language}}</td>
+            <!--
+            <td th:text="${course.minimumNumberOfStudents}">{{min students}}</td>
+            <td th:text="${course.maximumNumberOfStudents}">{{max students}}</td>
+            <td th:text="${course.expectedNumberOfStudents}">{{exp students}}</td>
+            <td th:text="${course.prerequisites}">{{prerequisites}}</td>
+            <td th:text="${course.learningOutcome}">{{learningOutcome}}</td>
+            <td th:text="${course.content}">{{content}}</td>
+            <td th:text="${course.learningActivities}">{{learningActivities}}</td>
+            <td th:text="${course.examForm}">{{examForm}}</td>
+            <td th:text="${course.studyProgramme}">{{studyProgramme}}</td>
+            <td>
+                <ul>
+                    <li th:each="teacher : ${course.teachers}" th:text="${teacher.firstName}">
+                    </li>
+                </ul>
+            </td>
+        -->
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">Name(DA)</label>
+                    <input th:field="${course.nameInDanish}" type="text" class="form-control" id="inputEmail4"
+                           placeholder="Name in danish">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Name(EN)</label>
+                    <input th:field="${course.nameInEnglish}" type="text" class="form-control" id="inputPassword4"
+                           placeholder="Name in english">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputPassword4">Min # of students</label>
+                    <input th:field="${course.minimumNumberOfStudents}" type="number" class="form-control"
+                           placeholder="0">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPassword4">Expected # of students</label>
+                    <input th:field="${course.expectedNumberOfStudents}" type="number" class="form-control"
+                           placeholder="0">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPassword4">Max # of students</label>
+                    <input th:field="${course.maximumNumberOfStudents}" type="number" class="form-control"
+                           placeholder="0">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputAddress2">ECTS</label>
+                    <input th:field="${course.ects}" type="text" class="form-control" id="inputAddress2"
+                           placeholder="Amount of ECTS">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAddress2">Mandatory or elective</label>
+                    <select th:field="${course.mandatory}" class="form-control">
+                        <option value="0">Choose...</option>
+                        <option th:value="true">Mandatory</option>
+                        <option th:value="false">Elective</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAddress2">Semester</label>
+                    <input th:field="${course.semester}" type="text" class="form-control" id="inputAddres"
+                           placeholder="Semester">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputAddress2">Class code</label>
+                    <input th:field="${course.classCode}" type="text" class="form-control" id="inputAddr"
+                           placeholder="Class code">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">Course language</label>
+                    <input th:field="${course.language}" type="text" class="form-control"
+                           placeholder="Language">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputPassword4">Study programme</label>
+                    <select th:field="${course.studyProgramme}" class="form-control">
+                        <option th:each="studyprogramme : ${studyprogramme}" th:value="${studyprogramme.name}" th:text="${studyprogramme.name}">Choose...</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Learning outcome</label>
+                    <input th:field="${course.learningOutcome}" type="text" class="form-control"
+                           placeholder="The outcome of the course">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Content</label>
+                    <input th:field="${course.content}" type="text" class="form-control"
+                           placeholder="Course content">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Learning activities</label>
+                    <input th:field="${course.learningActivities}" type="text" class="form-control"
+                           placeholder="Activities of the course">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Exam form</label>
+                    <input th:field="${course.examForm}" type="text" class="form-control"
+                           placeholder="">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Teachers</label>
+                    <select th:field="${course.teachers}" class="form-control">
+                        <option th:each="teacher : ${teacher}" th:value="${teacher.firstName}" th:text="${teacher.firstName}">Choose...</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
 </body>
 </html>

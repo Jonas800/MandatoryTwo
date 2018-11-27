@@ -45,21 +45,36 @@ public class CourseController {
         //Course c = courseRepository.findByEcts(2);
         //System.out.println(c);
         model.addAttribute("courses", courseList);
-        return "redirect:/course";
+        return "courses";
     }
 
     @GetMapping("/course/delete/{id}")
     public String deleteCourse(@PathVariable Long id){
         courseRepo.deleteById(id);
-        return "/courses";
+        return "redirect:/course";
     }
+    @GetMapping("/course/edit/{id}")
+    public String editCourse(Model model, @PathVariable Long id){
+        Optional<Course> courseOptional = courseRepo.findById(id);
+        Course course = courseOptional.get();
+        model.addAttribute("course", course);
+        model.addAttribute("teacher", teacherRepo.findAll());
+        model.addAttribute("studyprogramme", studyRepo.findAll());
+        return "editCourse";
+    }
+    /*@GetMapping("/car/edit/{id}")
+    public String carEditView(Model m, @PathVariable Long id) {
+        Car c = carRepo.findById(id);
+        m.addAttribute("car", c);
+        List<User> users = userRepo.findAll();
+        m.addAttribute("users", users);
+        return "carEdit";
+    }*/
 
     @GetMapping("/course/create")
     public String createCourse(Model model){
-        ArrayList<Teacher> teacherArrayList = teacherRepo.findAll();
-        ArrayList<StudyProgramme> studyProgrammeArrayList = (ArrayList) studyRepo.findAll();
-        model.addAttribute("teacher", teacherArrayList);
-        model.addAttribute("studyprogramme", studyProgrammeArrayList);
+        model.addAttribute("teacher", teacherRepo.findAll());
+        model.addAttribute("studyprogramme", studyRepo.findAll());
         model.addAttribute("course", new Course());
         return "createCourse";
     }

@@ -30,10 +30,10 @@ public class Course {
     private String examForm;
     @OneToOne
     private StudyProgramme studyProgramme;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name="id")
     private List<Teacher> teachers;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name="id")
     private List<Student> students;
 

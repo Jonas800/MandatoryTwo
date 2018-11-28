@@ -5,10 +5,7 @@ import mandatory.two.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +32,8 @@ public class CourseController {
     @Autowired
     private StudentRepository studentRepo;
 
+    private Long editId;
+
     @GetMapping("/course")
     public String courses(Model model){
         List<Course> courseList = courseRepo.findAll();
@@ -53,22 +52,23 @@ public class CourseController {
         return "redirect:/course";
     }
     @GetMapping("/course/edit/{id}")
-    public String editCourse(Model model, @PathVariable Long id){
+    public String editCourseView(Model model, @PathVariable Long id){
         Optional<Course> courseOptional = courseRepo.findById(id);
         Course course = courseOptional.get();
+        editId = course.getId();
         model.addAttribute("course", course);
         model.addAttribute("teacher", teacherRepo.findAll());
         model.addAttribute("studyprogramme", studyRepo.findAll());
         return "editCourse";
     }
-    /*@GetMapping("/car/edit/{id}")
-    public String carEditView(Model m, @PathVariable Long id) {
-        Car c = carRepo.findById(id);
-        m.addAttribute("car", c);
-        List<User> users = userRepo.findAll();
-        m.addAttribute("users", users);
-        return "carEdit";
-    }*/
+    @PostMapping("/course/edit")
+    public String editCourse(@ModelAttribute Course course) {
+        course.setId(editId);
+        editId = null;
+        courseRepo.save(course);
+
+        return "redirect:/course";
+    }
 
     @GetMapping("/course/create")
     public String createCourse(Model model){
@@ -78,10 +78,10 @@ public class CourseController {
         return "createCourse";
     }
     @PostMapping("course/create")
-    public String createCourse(@RequestParam Course course){
-        System.out.println(course.toString());
+    public String createCourse(@ModelAttribute Course course){
+        //System.out.println(course.toString());
         courseRepo.save(course);
-        return "courses";
+        return "redirect:/courses";
     }
 
     @GetMapping("/course/join/{id}")

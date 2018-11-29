@@ -1,5 +1,6 @@
 package mandatory.two.controller;
 
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.User;
 import mandatory.two.helper.PasswordMatcher;
 import mandatory.two.repository.UserRepository;
@@ -28,7 +29,7 @@ public class LoginController {
 
         model.addAttribute("error", error);
 
-        return "login";
+        return "all/login";
     }
 
     @PostMapping("/login")
@@ -44,7 +45,7 @@ public class LoginController {
                     HttpSession session = request.getSession();
                     session.setAttribute("user", user);
 
-                    return "redirect:/forside";
+                    return SessionHelper.loginRedirect(user);
                 }
             } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
                 e.printStackTrace();

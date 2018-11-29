@@ -11,7 +11,10 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="/header"></div>
+<div th:if="${userType.equals('Teacher')}"><div th:replace="teacher/header"></div>
+</div>
+<div th:if="${userType.equals('Student')}"><div th:replace="student/header"></div>
+</div>
 
 <div class="jumbotron jumbotron-fluid">
     <div class="container">

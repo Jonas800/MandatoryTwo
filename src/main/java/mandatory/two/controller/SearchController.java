@@ -1,8 +1,10 @@
 package mandatory.two.controller;
 
 import mandatory.two.helper.SearchSpecification;
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.Course;
 import mandatory.two.repository.CourseRepository;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
@@ -21,36 +23,28 @@ public class SearchController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping("/index")
-    public String indexStudent(){
-        return "indexStudent";
-    }
-
     @PostMapping("/search")
-    public ModelAndView search(@RequestParam String search){
-        //ArrayList<Course> course = (ArrayList<Course>) courseRepository.findAll(SearchSpecification.doesNameInDanishContain("Kon"));
+    public ModelAndView search(@RequestParam String search, HttpServletRequest request) {
 
-        //System.out.println("SE MIG : " + course.get(0).getNameInDanish());
-        //System.out.println(search);
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
                 .where(SearchSpecification.doesFieldContain(search, "nameInDanish"))
                 .or(SearchSpecification.doesFieldContain(search, "nameInEnglish"))
         );
 
-        //System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
-        ModelAndView mav = new ModelAndView("searchResult");
+        ModelAndView mav = new ModelAndView(SessionHelper.redirectStudent(request, "searchResult"));
         mav.getModel().put("courses", courses);
 
         return mav;
     }
 
     @GetMapping("/search/advanced")
-    public String searchAdvanced(Model model){
+    public String searchAdvanced(Model model, HttpServletRequest request) {
         model.addAttribute("course", new Course());
-        return "searchAdvanced";
+        return SessionHelper.redirectStudent(request, "searchAdvanced");
     }
+
     @PostMapping("search/advanced")
-    public ModelAndView searchAdvanced(@ModelAttribute Course course, HttpServletRequest request){
+    public ModelAndView searchAdvanced(@ModelAttribute Course course, HttpServletRequest request) {
 
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll(Specification
                 .where(SearchSpecification.doesFieldContain(course.getNameInDanish(), "nameInDanish"))
@@ -61,24 +55,12 @@ public class SearchController {
                 .and(SearchSpecification.doesForeignKeyContain(course.getStudyProgramme().getName(), "name", "studyProgramme"))
         );
 
-        //System.out.println("SE MIG : " + courses.get(0).getNameInEnglish());
-
-        ModelAndView mav = new ModelAndView("searchResult");
+        ModelAndView mav = new ModelAndView(SessionHelper.redirectStudent(request,"searchResult"));
         mav.getModel().put("courses", courses);
 
         HttpSession session = request.getSession();
         session.setAttribute("lastView", mav);
 
         return mav;
-    }
-
-    @GetMapping("/search/advanced/{id}")
-    public String showMore(@PathVariable Long id, ModelMap model){
-
-        Optional<Course> optCourse = courseRepository.findById(id);
-        Course course = optCourse.get();
-        model.addAttribute("course", course);
-
-        return "modalCourse :: modalContents";
     }
 }

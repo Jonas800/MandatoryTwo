@@ -1,5 +1,6 @@
 package mandatory.two.controller;
 
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.Administrator;
 import mandatory.two.helper.PasswordHasher;
 import mandatory.two.repository.UserRepository;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -20,15 +23,15 @@ public class AdministratorController {
     private UserRepository userRepository;
 
     @GetMapping("/administrator/create")
-    public String createAdministratorView(Model model){
-
+    public String createAdministratorView(Model model, HttpServletRequest request) {
         model.addAttribute("user", new Administrator());
 
-        return "createAdministrator";
+        return SessionHelper.redirectAdministrator(request, "createAdministrator");
+        //return "createAdministrator";
     }
 
     @PostMapping("/administrator/create")
-    public String createAdministrator(@ModelAttribute Administrator administrator){
+    public String createAdministrator(@ModelAttribute Administrator administrator) {
 
         try {
             administrator.setPassword(PasswordHasher.generateStrongPasswordHash(administrator.getPassword()));

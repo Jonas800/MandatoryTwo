@@ -11,14 +11,13 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<div th:replace="/header"></div>
+<div th:replace="teacher/header"></div>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Create course <br>
+        <h1 class="display-4">Edit course <br>
         </h1>
-        <form method="post" action="/course/create">
-         <div th:replace="/formCourse"></div>
-
+        <form method="post" action="/course/edit">
+            <div th:replace="/formCourse"></div>
         </form>
     </div>
 </div>

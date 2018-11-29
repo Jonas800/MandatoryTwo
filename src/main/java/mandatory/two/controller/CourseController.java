@@ -81,7 +81,7 @@ public class CourseController {
     public String createCourse(@ModelAttribute Course course){
         //System.out.println(course.toString());
         courseRepo.save(course);
-        return "redirect:/courses";
+        return "redirect:/course";
     }
 
     @GetMapping("/course/join/{id}")

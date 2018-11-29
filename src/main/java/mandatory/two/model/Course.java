@@ -36,11 +36,27 @@ public class Course {
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name="id")
     private List<Student> students;
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    private List<Student> waitingList;
 
     public Course(){}
 
     public void addStudent(Student student){
         students.add(student);
+    }
+
+    public void addStudentToWaitingList(Student student){
+        waitingList.add(student);
+    }
+    public void removeStudentFromWaitingList(Student student){
+        int index = 0;
+
+        for (int i = 0; i<waitingList.size(); i++){
+            if(waitingList.get(i).getId().equals(student.getId())){
+                index = i;
+            }
+        }
+        waitingList.remove(index);
     }
 
     public Long getId() {
@@ -193,6 +209,14 @@ public class Course {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public List<Student> getWaitingList() {
+        return waitingList;
+    }
+
+    public void setWaitingList(List<Student> waitingList) {
+        this.waitingList = waitingList;
     }
 
     @Override

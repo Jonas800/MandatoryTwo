@@ -93,7 +93,7 @@ public class CourseController {
         Optional<Course> optionalCourse = courseRepo.findById(id);
         Course course = optionalCourse.get();
 
-        course.addStudent(student);
+        course.addStudentToWaitingList(student);
 
         courseRepo.save(course);
 

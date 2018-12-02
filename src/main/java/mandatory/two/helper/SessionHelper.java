@@ -103,4 +103,9 @@ public class SessionHelper {
             return "redirect:/login";
         }
     }
+
+    public static void logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.invalidate();
+    }
 }

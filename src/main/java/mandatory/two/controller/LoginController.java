@@ -1,6 +1,7 @@
 package mandatory.two.controller;
 
 import mandatory.two.helper.SessionHelper;
+import mandatory.two.model.Teacher;
 import mandatory.two.model.User;
 import mandatory.two.helper.PasswordMatcher;
 import mandatory.two.repository.UserRepository;
@@ -25,8 +26,14 @@ public class LoginController {
     String error = "";
 
     @GetMapping("/login")
-    public String login(Model model){
+    public String login(Model model, HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+        if(SessionHelper.isSessionValid(request)) {
+            User user = (User) session.getAttribute("user");
+
+            return SessionHelper.loginRedirect(user);
+        }
         model.addAttribute("error", error);
 
         return "all/login";
@@ -52,6 +59,13 @@ public class LoginController {
             }
         }
         error = "Email or password is invalid";
+
+        return "redirect:/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        SessionHelper.logout(request);
 
         return "redirect:/login";
     }

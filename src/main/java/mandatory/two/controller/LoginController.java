@@ -25,6 +25,11 @@ public class LoginController {
 
     String error = "";
 
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/login";
+    }
+
     @GetMapping("/login")
     public String login(Model model, HttpServletRequest request){
 

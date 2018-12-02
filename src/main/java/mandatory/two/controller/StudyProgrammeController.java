@@ -1,5 +1,6 @@
 package mandatory.two.controller;
 
+import mandatory.two.helper.SessionHelper;
 import mandatory.two.model.StudyProgramme;
 import mandatory.two.repository.StudyProgrammeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
@@ -19,29 +21,30 @@ public class StudyProgrammeController {
     private StudyProgrammeRepository studyProgrammeRepository;
 
     @GetMapping("/studyprogramme/create")
-    public String createStudyProgrammeView(Model model){
+    public String createStudyProgrammeView(Model model, HttpServletRequest request){
 
         model.addAttribute("studyProgramme", new StudyProgramme());
 
-        return "createStudyProgramme";
+        return SessionHelper.redirectAdministrator(request, "administrator/createStudyProgramme");
     }
 
     @PostMapping("/studyprogramme/create")
-    public String createStudyProgramme(@ModelAttribute StudyProgramme studyProgramme){
+    public String createStudyProgramme(@ModelAttribute StudyProgramme studyProgramme, HttpServletRequest request){
 
-        studyProgrammeRepository.save(studyProgramme);
-
+        if(SessionHelper.isAdministrator(request)) {
+            studyProgrammeRepository.save(studyProgramme);
+        }
         return "redirect:/studyprogramme";
     }
 
     @GetMapping("/studyprogramme")
-    public String viewStudyProgramme(Model model){
+    public String viewStudyProgramme(Model model, HttpServletRequest request){
 
         ArrayList<StudyProgramme> studyProgrammes = (ArrayList) studyProgrammeRepository.findAll();
 
         model.addAttribute("studyprogrammes", studyProgrammes);
 
-        return "viewStudyProgramme";
+        return SessionHelper.redirectAdministrator(request, "administrator/viewStudyProgramme");
     }
 
     @GetMapping("/studyprogramme/delete/{id}")

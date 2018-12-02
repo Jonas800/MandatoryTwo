@@ -26,20 +26,24 @@ public class AdministratorController {
     public String createAdministratorView(Model model, HttpServletRequest request) {
         model.addAttribute("user", new Administrator());
 
+        //swap the commenting on the lines below to create a user if someone purges the db
+        //and comment the session check in the next method
         return SessionHelper.redirectAdministrator(request, "createAdministrator");
-        //return "createAdministrator";
+        //return "administrator/createAdministrator";
     }
 
     @PostMapping("/administrator/create")
-    public String createAdministrator(@ModelAttribute Administrator administrator) {
+    public String createAdministrator(@ModelAttribute Administrator administrator, HttpServletRequest request) {
 
-        try {
-            administrator.setPassword(PasswordHasher.generateStrongPasswordHash(administrator.getPassword()));
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-            e.printStackTrace();
+        if(SessionHelper.isAdministrator(request)) {
+            try {
+                administrator.setPassword(PasswordHasher.generateStrongPasswordHash(administrator.getPassword()));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                e.printStackTrace();
+            }
+
+            userRepository.save(administrator);
         }
-
-        userRepository.save(administrator);
         return "redirect:/administrator/create";
     }
 }

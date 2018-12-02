@@ -35,7 +35,7 @@ public class LoginController {
             return SessionHelper.loginRedirect(user);
         }
         model.addAttribute("error", error);
-
+        error = "";
         return "all/login";
     }
 

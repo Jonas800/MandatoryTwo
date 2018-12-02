@@ -28,7 +28,7 @@ public class WaitingListController {
         ArrayList<Course> courses = (ArrayList<Course>) courseRepository.findAll();
         model.addAttribute("courses", courses);
 
-        return SessionHelper.redirectAdministrator(request, "administrator/waitingList");
+        return SessionHelper.redirectAdministrator(request, "waitingList");
     }
 
     @GetMapping("/administrator/waitinglist/course/{id}")

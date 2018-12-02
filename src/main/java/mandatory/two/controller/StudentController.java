@@ -25,7 +25,7 @@ public class StudentController {
     public String createStudentView(Model model, HttpServletRequest request){
         model.addAttribute("user", new Student());
 
-        return SessionHelper.redirectAdministrator(request, "administrator/createStudent");
+        return SessionHelper.redirectAdministrator(request, "createStudent");
     }
 
     @PostMapping("/student/create")

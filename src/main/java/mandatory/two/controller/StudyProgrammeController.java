@@ -25,7 +25,7 @@ public class StudyProgrammeController {
 
         model.addAttribute("studyProgramme", new StudyProgramme());
 
-        return SessionHelper.redirectAdministrator(request, "administrator/createStudyProgramme");
+        return SessionHelper.redirectAdministrator(request, "createStudyProgramme");
     }
 
     @PostMapping("/studyprogramme/create")
@@ -44,7 +44,7 @@ public class StudyProgrammeController {
 
         model.addAttribute("studyprogrammes", studyProgrammes);
 
-        return SessionHelper.redirectAdministrator(request, "administrator/viewStudyProgramme");
+        return SessionHelper.redirectAdministrator(request, "viewStudyProgramme");
     }
 
     @GetMapping("/studyprogramme/delete/{id}")

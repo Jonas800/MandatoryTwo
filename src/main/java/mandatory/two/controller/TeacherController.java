@@ -26,7 +26,7 @@ public class TeacherController {
 
         model.addAttribute("user", new Teacher());
 
-        return SessionHelper.redirectAdministrator(request, "administrator/createTeacher");
+        return SessionHelper.redirectAdministrator(request, "/createTeacher");
     }
 
     @PostMapping("/teacher/create")

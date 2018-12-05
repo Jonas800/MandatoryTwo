@@ -10,7 +10,7 @@
 <div th:replace="student/header"></div>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="display-4">Courses <br><a href="/course/create" class="btn btn-outline-primary">Add new course</a>
+        <h1 class="display-4">Courses <br>
         </h1>
 
         <table class="table table-striped">
@@ -70,10 +70,7 @@
                     </ul>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary"
-                            th:onclick="'openCourseModal('+${course.id}+')'">
-                        Show more
-                    </button>
+                    <a th:href="'/course/showmore/?id='+${course.id}" class="btn btn-outline-info">Show more</a>
                 </td>
 
                 <td>

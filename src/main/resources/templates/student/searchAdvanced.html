@@ -3,24 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Advanced Search for Courses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
 <div th:replace="student/header"></div>
 <form method="post" action="/search/advanced">
-    <label for="">Name in Danish</label>
-    <input type="text" th:field="${course.nameInDanish}">
-    <label for="">Name in English</label>
-    <input type="text" th:field="${course.nameInEnglish}">
-    <label for="">Class Code</label>
-    <input type="text" th:field="${course.classCode}">
-    <label for="">Exam Form</label>
-    <input type="text" th:field="${course.examForm}">
-    <label for="">Language</label>
-    <input type="text" th:field="${course.language}">
-    <label for="">Study Programme</label>
-    <input type="text" th:field="${course.studyProgramme.name}">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Advanced Search for Courses <br>
+            </h1>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Name in Danish</label>
+                    <input class="form-control" type="text" th:field="${course.nameInDanish}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Name in English</label>
+                    <input class="form-control" type="text" th:field="${course.nameInEnglish}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Class Code</label>
+                    <input class="form-control" type="text" th:field="${course.classCode}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Exam Form</label>
+                    <input class="form-control" type="text" th:field="${course.examForm}">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Language</label>
+                    <input class="form-control" type="text" th:field="${course.language}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Study Programme</label>
+                    <input class="form-control" type="text" th:field="${course.studyProgramme.name}">
+                </div>
 
-    <button type="submit">Search</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+
 </form>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 </html>

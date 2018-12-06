@@ -55,6 +55,6 @@ public class WaitingListController {
 
             courseRepository.save(course);
         }
-        return "/administrator/waitinglist/course/" + courseId;
+        return "redirect:/administrator/waitinglist/course/" + courseId;
     }
 }

@@ -34,6 +34,9 @@ public class SearchController {
         ModelAndView mav = new ModelAndView(SessionHelper.redirectStudent(request, "searchResult"));
         mav.getModel().put("courses", courses);
 
+        HttpSession session = request.getSession();
+        session.setAttribute("lastView", mav);
+
         return mav;
     }
 

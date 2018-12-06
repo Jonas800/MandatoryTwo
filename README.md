@@ -22,7 +22,7 @@ Additional information on how to use the application once it's up and running.
   3. You now have the following three options.
     3.1 Login as Student - Email: jonas@jonas.dk - Password: 1234
     3.2 Login as Teacher - Email: alex@alex.dk - Password: 1234
-    3.3 Login as Admin   - Email: matti@matti.dk - Password: idiot
+    3.3 Login as Admin   - Email: admin@admin.dk - Password: 1234
   4. Depending on what login-type you chose, you will have different options and rights.
      See 'Functions' for more information regarding application functionality and login-types.
 ```
